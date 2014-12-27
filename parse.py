@@ -1,5 +1,5 @@
 '''
-Module for parsing wordlists from various sources into a python set.
+Parse wordlists from various sources into a python set.
 '''
 
 def parse_file(filename):
