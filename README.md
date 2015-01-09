@@ -14,7 +14,7 @@ generates passwords from a sufficiently random source to avoid this issue.
 Specifically, this program uses
 [SystemRandom](https://docs.python.org/3.4/library/random.html#random.SystemRandom)
 for randomness generation. This is supposed to be secure enough for
-cryptographic applications, and this is presumably random enough for out
+cryptographic applications, and this is presumably random enough for our
 purposes.
 
 If you have any concerns or suggestions with regard to this program's security,
