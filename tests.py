@@ -1,6 +1,6 @@
 import unittest
 
-from parse import str_parse
+from parse import parse_string
 
 class ParsingTests(unittest.TestCase):
 

@@ -2,6 +2,9 @@
 Parse wordlists from various sources into a python set.
 '''
 
+def parse_string(string):
+    pass
+
 def parse_file(filename):
     '''
     Parse a file of whitespace-seperated words, which may span multiple
