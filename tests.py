@@ -2,6 +2,7 @@ from unittest import TestCase
 import os
 
 from parse import parse_string, parse_file
+from generate import generate_passphrase
 
 class ParsingTests(TestCase):
 
@@ -60,3 +61,18 @@ class ParsingTests(TestCase):
 
             for word in str.split(content):
                 self.assertIn(word, word_set)
+
+class GeneratorTests(TestCase):
+    
+    def setUp(self):
+        self.word_set = {word for word in '''
+                                     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+                                     16 17 18 19 20 21 22 23 24 25 26 27
+                                     28 29 30
+                                     '''
+                        }
+    def test_contents(self):
+        passphrase = generate_passphrase(self.word_set, 10)
+
+        for word in passphrase.split():
+            self.assertIn(word, self.word_set)
