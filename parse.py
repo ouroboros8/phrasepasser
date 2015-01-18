@@ -3,7 +3,7 @@ Parse wordlists from various sources into a python set.
 '''
 
 def parse_string(string):
-    pass
+    return {word for word in string.split()}
 
 def parse_file(filename):
     '''
