@@ -1,5 +1,6 @@
 import unittest
-from generate import gen_passphrase, possibilities
+from generate import gen_passphrase, possibilities, \
+    possibilities_magnitude
 
 with open('test_words.txt', 'r') as handle:
     TEST_WORDS = handle.read().split()
@@ -35,6 +36,24 @@ class StrengthTests(unittest.TestCase):
     '''
     Test that the reported passphrase strenghts are correct.
     '''
-    def test_single_word(self):
-        for n in range(0, 10):
+    def test_strengths(self):
+
+        for n in range(0, 100):
             self.assertEqual(possibilities(['a'], n), 1)
+
+        for n in range(0, 100):
+            self.assertEqual(possibilities(['a', 'b', 'c'], n), 3**n)
+
+    def test_human_readable_strengths(self):
+        self.assertEqual(possibilities_magnitude(
+            range(0, 10),
+            3), '10^3')
+
+        self.assertEqual(possibilities_magnitude(range(0, 40), 3),
+                         '10^4')
+
+        self.assertEqual(possibilities_magnitude(range(0, 40), 5),
+                         '10^8')
+
+        self.assertEqual(possibilities_magnitude(TEST_WORDS, 3),
+                         '10^15')
