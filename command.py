@@ -3,8 +3,14 @@ import argparse
 import generate
 
 def parse_wordlist(wordlists):
-    return ' '.join([wordlist.read() for wordlist in wordlists]
-                   ).split()
+    '''
+    Parse wordlists arg into a list of words.
+    '''
+    if type(wordlists) == list:
+        return ' '.join([wordlist.read() for wordlist in wordlists]
+                       ).split()
+    else:
+        return list(set(wordlists.read().split()))
 
 if __name__ == '__main__':
 
