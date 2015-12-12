@@ -1,9 +1,29 @@
 import unittest
+import string, random
 from generate import gen_passphrase, possibilities, \
     possibilities_magnitude
 
-with open('test_words.txt', 'r') as handle:
-    TEST_WORDS = handle.read().split()
+def generate_word(
+        size=6,
+        chars=string.digits+string.ascii_letters):
+    '''
+    Return a (non-cryptographically-secure) random word 'size'
+    characters long composed of the characters 'chars'.
+    '''
+    return ''.join([random.choice(chars) for _ in range(0, size)])
+
+
+def generate_test_wordlist(size=10000):
+    '''
+    Returns a string of 'size' random words.
+    '''
+    max_word_len = 20
+    min_word_len = 3
+    word_lengths = [
+        random.randrange(min_word_len, max_word_len)
+        for _ in range(0, size)]
+    return ' '.join(
+        [generate_word(size=length) for length in word_lengths])
 
 class PassphraseTests(unittest.TestCase):
     '''
@@ -29,7 +49,9 @@ class PassphraseTests(unittest.TestCase):
             )
 
             self.assertEqual(
-                len(gen_passphrase(TEST_WORDS, length).split()), length
+                len(gen_passphrase(generate_test_wordlist(),
+                                   length).split()),
+                length
             )
 
 class StrengthTests(unittest.TestCase):
@@ -55,5 +77,6 @@ class StrengthTests(unittest.TestCase):
         self.assertEqual(possibilities_magnitude(range(0, 40), 5),
                          '10^8')
 
-        self.assertEqual(possibilities_magnitude(TEST_WORDS, 3),
-                         '10^15')
+        self.assertEqual(possibilities_magnitude(
+            generate_test_wordlist(1000), 3),
+                         '10^9')
