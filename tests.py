@@ -13,11 +13,11 @@ def generate_word(
     return ''.join([random.choice(chars) for _ in range(0, size)])
 
 
-def generate_test_wordlist(size=10000):
+def generate_test_wordlist(size=100):
     '''
     Returns a string of 'size' random words.
     '''
-    max_word_len = 20
+    max_word_len = 12
     min_word_len = 3
     word_lengths = [
         random.randrange(min_word_len, max_word_len)
@@ -83,5 +83,5 @@ class StrengthTests(unittest.TestCase):
                          '10^8')
 
         self.assertEqual(possibilities_magnitude(
-            generate_test_wordlist(1000), 3),
+            generate_test_wordlist(size=1000), 3),
                          '10^9')
