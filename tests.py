@@ -22,8 +22,7 @@ def generate_test_wordlist(size=10000):
     word_lengths = [
         random.randrange(min_word_len, max_word_len)
         for _ in range(0, size)]
-    return ' '.join(
-        [generate_word(size=length) for length in word_lengths])
+    return [generate_word(size=length) for length in word_lengths]
 
 class PassphraseTests(unittest.TestCase):
     '''
@@ -48,11 +47,9 @@ class PassphraseTests(unittest.TestCase):
                 length
             )
 
-            self.assertEqual(
-                len(gen_passphrase(generate_test_wordlist(),
-                                   length).split()),
-                length
-            )
+            passphrase = gen_passphrase(generate_test_wordlist(),
+                                        length)
+            self.assertEqual(len(passphrase.split()), length)
 
 class StrengthTests(unittest.TestCase):
     '''
