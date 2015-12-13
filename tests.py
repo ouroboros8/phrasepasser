@@ -60,11 +60,12 @@ class StrengthTests(unittest.TestCase):
         Check that generate.possibilities correctly calculates the total
         number of possible passphrases.
         '''
-        for n in range(0, 100):
-            self.assertEqual(possibilities(['a'], n), 1)
+        for pw_len in range(0, 100):
+            self.assertEqual(possibilities(['a'], pw_len), 1)
 
-        for n in range(0, 100):
-            self.assertEqual(possibilities(['a', 'b', 'c'], n), 3**n)
+        for pw_len in range(0, 100):
+            self.assertEqual(possibilities(['a', 'b', 'c'], pw_len),
+                             3**pw_len)
 
     def test_human_readable_strengths(self):
         '''
