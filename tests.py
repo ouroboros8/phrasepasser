@@ -56,7 +56,10 @@ class StrengthTests(unittest.TestCase):
     Test that the reported passphrase strenghts are correct.
     '''
     def test_strengths(self):
-
+        '''
+        Check that generate.possibilities correctly calculates the total
+        number of possible passphrases.
+        '''
         for n in range(0, 100):
             self.assertEqual(possibilities(['a'], n), 1)
 
@@ -64,6 +67,10 @@ class StrengthTests(unittest.TestCase):
             self.assertEqual(possibilities(['a', 'b', 'c'], n), 3**n)
 
     def test_human_readable_strengths(self):
+        '''
+        Check that possibilities_magnitude returns corrent
+        human-readable values for possibility calculations.
+        '''
         self.assertEqual(possibilities_magnitude(
             range(0, 10),
             3), '10^3')
